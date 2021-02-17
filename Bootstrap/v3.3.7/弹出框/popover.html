@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <title>Popover</title>
+</head>
+
+<body class="container-fluid">
+    <p>为任意元素添加一小块浮层，就像 iPad 上一样，用于存放非主要信息。 弹出框的标题和内容的长度都是零的话将永远不会被显示出来。</p>
+
+    <label>popover初始化</label>
+    <p>由于性能的原因，工具提示和弹出框的 data 编程接口（data api）是必须要手动初始化的。 在一个页面上一次性初始化所有弹出框的方式是通过 data-toggle 属性选中他们： $(function () { $('[data-toggle="popover"]').popover()})</p>
+
+    <label>Popovers in button groups, input groups, and tables require special setting</label>
+    <p>When using popovers on elements within a .btn-group or an .input-group, or on table-related elements (<td>, <th>, <tr>, <thead>, <tbody>, <tfoot>), you'll have to specify the option container: 'body' (documented below) to avoid unwanted side effects (such as the element growing wider and/or losing its rounded corners when the popover is triggered).</p>
+
+    <label>Don't try to show popovers on hidden elements</label>
+    <p>Invoking $(...).popover('show') when the target element is display: none; will cause the popover to be incorrectly positioned.</p>
+
+    <label>Popovers on disabled elements require wrapper elements</label>
+    <p>To add a popover to a disabled or .disabled element, put the element inside of a <div> and apply the popover to that <div> instead.</p>
+
+    <label>Multiple-line links</label>
+    <p>Sometimes you want to add a popover to a hyperlink that wraps multiple lines. The default behavior of the popover plugin is to center it horizontally and vertically. Add white-space: nowrap; to your anchors to avoid this.</p>
+
+    <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">点我弹出/隐藏弹出框</button>
+    
+    <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Popover on 左侧</button>
+
+    <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Popover on 顶部</button>
+
+    <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Popover on 底部</button>
+
+    <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."> Popover on 右侧</button>
+
+    <br/><br/>
+    <label>点击并让弹出框消失</label>
+    <p>通过使用 focus 触发器可以在用户点击弹出框是让其消失。实现“点击并让弹出框消失”的效果需要一些额外的代码为了更好的跨浏览器和跨平台效果，你必须使用 <a> 标签，不能使用 <\button> 标签，并且，还必须包含 role="button" 和 tabindex 属性。</p>
+    <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">可消失的弹出框</a>
+     
+     <br/><br/>
+     <label>用法</label>
+     <p>通过 JavaScript 代码启动弹出框：$('#example').popover(options)</p>
+
+     <br/><br/>
+     <label>参数</label>
+     <p>可以通过 data 属性或 JavaScript 传递参数。对于 data 属性，将参数名附着到 data- 后面，例如 data-animation=""。</p>
+     <table class="table table-condensed table-striped table-bordered table-hover">
+         <tr> 
+             <td>名称</td>
+             <td>类型</td>
+             <td>默认值</td>
+             <td>描述</td>
+        </tr>
+        <tr>
+            <td>animation</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>为弹出框赋予淡出的 CSS 动画效果。</td>
+        </tr>
+         <tr>
+            <td>container</td>
+            <td>string | false</td>
+            <td>false</td>
+            <td>Appends the popover to a specific element. Example: container: 'body'. This option is particularly useful in that it allows you to position the popover in the flow of the document near the triggering element - which will prevent the popover from floating away from the triggering element during a window resize.</td>
+        </tr>
+         <tr>
+            <td>content</td>
+            <td>string | function</td>
+            <td>''</td>
+            <td>Default content value if data-content attribute isn't present.If a function is given, it will be called with its this reference set to the element that the popover is attached to.</td>
+        </tr>
+         <tr>
+            <td>delay</td>
+            <td>number | object</td>
+            <td>0</td>
+            <td>Delay showing and hiding the popover (ms) - does not apply to manual trigger type; If a number is supplied, delay is applied to both hide/show;Object structure is: delay: { "show": 500, "hide": 100 }</td>
+        </tr>
+         <tr>
+            <td>html</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Insert HTML into the popover. If false, jQuery's text method will be used to insert content into the DOM. Use text if you're worried about XSS attacks.</td>
+        </tr>
+         <tr>
+            <td>placement</td>
+            <td>string | function</td>
+            <td>'right'</td>
+            <td>How to position the popover - top | bottom | left | right | auto.When "auto" is specified, it will dynamically reorient the popover. For example, if placement is "auto left", the popover will display to the left when possible, otherwise it will display right.
+When a function is used to determine the placement, it is called with the popover DOM node as its first argument and the triggering element DOM node as its second. The this context is set to the popover instance.</td>
+        </tr>
+         <tr>
+            <td>selector</td>
+            <td>string</td>
+            <td>false</td>
+            <td>If a selector is provided, popover objects will be delegated to the specified targets. In practice, this is used to enable dynamic HTML content to have popovers added. See this and an informative example.</td>
+        </tr>
+         <tr>
+            <td>template</td>
+            <td>string</td>
+            <td>'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'</td>
+            <td>Base HTML to use when creating the popover.The popover's title will be injected into the .popover-title.The popover's content will be injected into the .popover-content..arrow will become the popover's arrow.The outermost wrapper element should have the .popover class.</td>
+        </tr>
+         <tr>
+            <td>title</td>
+            <td>string | function</td>
+            <td>''</td>
+            <td>Default title value if title attribute isn't present.If a function is given, it will be called with its this reference set to the element that the popover is attached to.</td>
+        </tr>
+         <tr>
+            <td>trigger</td>
+            <td>string</td>
+            <td>'click'</td>
+            <td>How popover is triggered - click | hover | focus | manual. You may pass multiple triggers; separate them with a space. manual cannot be combined with any other trigger.</td>
+        </tr>
+         <tr>
+            <td>viewport</td>
+            <td>string | object | function</td>
+            <td>{ selector: 'body', padding: 0 }</td>
+            <td>Keeps the popover within the bounds of this element. Example: viewport: '#viewport' or { "selector": "#viewport", "padding": 0 }If a function is given, it is called with the triggering element DOM node as its only argument. The this context is set to the popover instance.</td>
+        </tr>
+     </table>
+
+     <br/><br/>
+     <label>方法</label>
+     <p>可以通过 data 属性或 JavaScript 传递参数。对于 data 属性，将参数名附着到 data- 后面，例如 data-animation=""。</p>
+     <table class="table table-condensed table-striped table-bordered table-hover">
+         <tr>
+             <td>方法</td>
+             <td>描述</td>
+             <td>实例</td>
+        </tr>
+        <tr>
+            <td>options: .popover(options)</td>
+            <td>向元素集合附加弹出框句柄。</td>
+            <td>$().popover(options)</td>
+        </tr>
+        <tr>
+            <td>toggle: .popover('toggle')</td>
+            <td>切换显示/隐藏元素的弹出框。</td>
+            <td>$('#element').popover('toggle')</td>
+        </tr>
+        <tr>
+            <td>show: .popover('show')</td>
+            <td>显示元素的弹出框。</td>
+            <td>$('#element').popover('show')</td>
+        </tr>
+        <tr>
+            <td>hide: .popover('hide')</td>
+            <td>隐藏元素的弹出框。</td>
+            <td>$('#element').popover('hide')</td>
+        </tr>
+        <tr>
+            <td>destroy: .popover('destroy')</td>
+            <td>隐藏并销毁元素的弹出框。</td>
+            <td>$('#element').popover('destroy')</td>
+        </tr>
+     </table>
+
+     <br/><br/>
+     <label>事件</label>
+     <table class="table table-condensed table-striped table-bordered table-hover">
+         <tr>
+             <td>Event Type</td>
+             <td>Description</td>
+         </tr>
+         <tr>
+             <td>show.bs.popover</td>
+             <td>This event fires immediately when the show instance method is called.</td>
+         </tr>
+         <tr>
+             <td>shown.bs.popover</td>
+             <td>This event is fired when the popover has been made visible to the user (will wait for CSS transitions to complete).</td>
+         </tr>
+         <tr>
+             <td>hide.bs.popover</td>
+             <td>This event is fired immediately when the hide instance method has been called.</td>
+         </tr>
+         <tr>
+             <td>hidden.bs.popover</td>
+             <td>This event is fired when the popover has finished being hidden from the user (will wait for CSS transitions to complete).</td>
+         </tr>
+         <tr>
+             <td>inserted.bs.popover</td>
+             <td>This event is fired after the show.bs.popover event when the popover template has been added to the DOM.</td>
+         </tr>
+     </table>
+    
+    </body>
+<script>
+    $(function (){
+        $("[data-toggle='popover']").popover();
+    });
+</script>
+
+</html>
